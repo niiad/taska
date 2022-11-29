@@ -7,7 +7,9 @@ const App: React.FC = () => {
   const [task, setTask] = useState<string>("");
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const onTaskAdd = () => {};
+  const onTaskAdd = (event: React.FormEvent) => {
+    event.preventDefault();
+  };
 
   return (
     <div className="App">
