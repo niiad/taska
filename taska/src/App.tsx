@@ -20,6 +20,7 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taska</span>
         <InputField task={task} setTask={setTask} onTaskAdd={onTaskAdd}/>
+        <TaskList />
     </div>
   );
 }
