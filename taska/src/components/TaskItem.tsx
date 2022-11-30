@@ -20,6 +20,12 @@ const TaskItem: React.FC<TaskItemProps> = ({task, tasks, setTasks}: TaskItemProp
         );
     };
 
+    const onDelete = (id: number) => {
+        setTasks(tasks.filter((task) =>
+            task.id !== id
+        ));
+    };
+
     return (
         <form className="tasks__item">
             {
@@ -29,12 +35,12 @@ const TaskItem: React.FC<TaskItemProps> = ({task, tasks, setTasks}: TaskItemProp
                     <span className="tasks__item--text">{task.task}</span>
                 )
             }
-            
+
             <div>
                 <span className="icon">
                     <AiFillEdit />
                 </span>
-                <span className="icon">
+                <span className="icon" onClick={() => onDelete(task.id)}>
                     <AiFillDelete />
                 </span>
                 <span className="icon" onClick={() => onDone(task.id)}>
