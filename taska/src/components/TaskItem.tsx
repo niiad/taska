@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Task} from "../entities/Task";
 import {AiFillEdit, AiFillDelete } from "react-icons/ai";
 import {MdDone} from "react-icons/md";
@@ -38,11 +38,17 @@ const TaskItem: React.FC<TaskItemProps> = ({task, tasks, setTasks}: TaskItemProp
         setEdit(false);
     };
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        inputRef.current?.focus();
+    }, [edit]);
+
     return (
         <form className="tasks__item" onSubmit={(event) => onEdit(event, task.id)}>
             {
                 edit ? (
-                    <input value={editTask} onChange={(event) => setEditTask(event.target.value)} className={"tasks__item--text"}/>
+                    <input ref={inputRef} value={editTask} onChange={(event) => setEditTask(event.target.value)} className={"tasks__item--text"}/>
                 ) : task.completed ? (
                     <s className="tasks__item--text">{task.task}</s>
                 ) : (
